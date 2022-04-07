@@ -1,12 +1,33 @@
 import unittest
 
 class StringCalculator:
-    pass
+
+    def add(self):
+        pass
 
 
+"""
+input  ->  output
+
+ ""    ->   0
+
+ "1"   ->   1
+ "2"   ->   2
+ 
+ "1,2" ->   3
+
+"""
+
+#StringCalculatorShould test_translate_empties
+# red: 🔴
+# green:🟢
 class StringCalculatorShould(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+
+    def setUp(self) -> None:
+        self.string_calculator = StringCalculator()
+
+    def test_translate_empties(self):
+        self.assertEqual(0, self.string_calculator.add(""))  # add assertion here
 
 
 if __name__ == '__main__':
