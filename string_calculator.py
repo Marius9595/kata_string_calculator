@@ -8,10 +8,16 @@ class StringCalculator:
 
     def add(self, numbers: str) -> int:
 
-        if(numbers == ''):
+        if numbers == '':
             return 0
 
-        numbers = [int(number) for number in re.split(r',|\n', numbers)]
+        delimiter = ','
+
+        if re.search("//.\n", numbers):
+            delimiter = numbers[2]
+            numbers = re.split("//.\n", numbers)[1]
+
+        numbers = [int(number) for number in re.split(f'{delimiter}|\n', numbers)]
 
         return reduce(lambda sum, number: sum+number, numbers)
 
@@ -53,7 +59,7 @@ class StringCalculatorShould(unittest.TestCase):
 
     def test_allows_change_among_different_delimeters(self):
         self.assertEqual(5, self.string_calculator.add("//;\n1;2;2"))
-        self.assertEqual(3, self.string_calculator.add("//$\n1$2"))
+        self.assertEqual(3, self.string_calculator.add("//#\n1#2"))
 
 
 if __name__ == '__main__':
