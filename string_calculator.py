@@ -1,4 +1,6 @@
+import operator
 import unittest
+from functools import reduce
 
 class StringCalculator:
 
@@ -7,7 +9,7 @@ class StringCalculator:
         if(numbers == ''):
             return 0
 
-        return int(numbers)
+        return int(reduce(lambda sum, number: int(sum)+int(number), list(numbers.split(','))))
 
 
 """
