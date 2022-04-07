@@ -51,6 +51,10 @@ class StringCalculatorShould(unittest.TestCase):
     def test_handle_new_lines_between_numbers(self):
         self.assertEqual(6, self.string_calculator.add("1\n2,3"))
 
+    def test_allows_change_among_different_delimeters(self):
+        self.assertEqual(5, self.string_calculator.add("//;\n1;2;2"))
+        self.assertEqual(3, self.string_calculator.add("//$\n1$2"))
+
 
 if __name__ == '__main__':
     unittest.main()
