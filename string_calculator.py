@@ -37,6 +37,10 @@ class StringCalculatorShould(unittest.TestCase):
         self.assertEqual(1, self.string_calculator.add("1"))
         self.assertEqual(2, self.string_calculator.add("2"))
 
+    def test_add_all_numbers_identified(self):
+        self.assertEqual(3, self.string_calculator.add("1,2"))
+        self.assertEqual(14, self.string_calculator.add("5,9"))
+
 
 if __name__ == '__main__':
     unittest.main()
