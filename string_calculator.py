@@ -11,16 +11,16 @@ class StringCalculator:
         if numbers == '':
             return 0
 
-        delimiter, numbers = self.set_delimiter(numbers)
+        delimiter, numbers = self.extract_delimiter(numbers)
 
-        numbers = self.get_numbers(delimiter, numbers)
+        numbers = self.to_integers(delimiter, numbers)
 
         return reduce(lambda sum, number: sum+number, numbers)
 
-    def get_numbers(self, delimiter, numbers):
+    def to_integers(self, delimiter, numbers):
         return [int(number) for number in re.split(f'{delimiter}|\n', numbers)]
 
-    def set_delimiter(self, numbers):
+    def extract_delimiter(self, numbers):
 
         delimiter = ','
         there_is_new_delimiter = re.search("//.\n", numbers)
