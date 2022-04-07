@@ -1,29 +1,32 @@
-import operator
+
+
 import unittest
 from functools import reduce
+import re
 
 class StringCalculator:
 
-    def add(self, numbers):
+    def add(self, numbers: str) -> int:
 
         if(numbers == ''):
             return 0
 
-        return int(reduce(lambda sum, number: int(sum)+int(number), list(numbers.split(','))))
+        numbers = [int(number) for number in re.split(r',|\n', numbers)]
+
+        return reduce(lambda sum, number: sum+number, numbers)
 
 
 """
 input  ->  output
 
- ""    ->   0
+""    ->   0
 
- "1"   ->   1
- "2"   ->   2
- 
- "1,2" ->   3
- 
- "1\n2,3" -> 6
+"1"   ->   1
+"2"   ->   2
 
+"1,2" ->   3
+
+"1\n2,3" -> 6
 """
 
 #StringCalculatorShould
@@ -46,7 +49,7 @@ class StringCalculatorShould(unittest.TestCase):
         self.assertEqual(14, self.string_calculator.add("5,9"))
 
     def test_handle_new_lines_between_numbers(self):
-        self.assertEqual(3, self.string_calculator.add("1\n2,3"))
+        self.assertEqual(6, self.string_calculator.add("1\n2,3"))
 
 
 if __name__ == '__main__':
